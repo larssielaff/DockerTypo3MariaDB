@@ -63,4 +63,4 @@ VOLUME ["/etc/mysql", "/var/lib/mysql"]
 WORKDIR /data
 
 # Define default command.
-CMD ["mysqld"]
+CMD ["mysqld_safe"]
