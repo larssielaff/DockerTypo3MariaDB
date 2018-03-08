@@ -10,9 +10,7 @@ RUN \
 RUN \  
   sed -i 's/^\(bind-address\s.*\)/# \1/' /etc/mysql/my.cnf 
 CMD ["mysqld_safe"] 
-RUN \
-  echo "mysql -e 'GRANT ALL PRIVILEGES ON *.* TO \"root\"@\"%\" WITH GRANT OPTION;'" >> /tmp/config && \
-  bash /tmp/config 
+RUN mysql -e 'GRANT ALL PRIVILEGES ON *.* TO \"root\"@\"%\" WITH GRANT OPTION;' 
 
 # Define mountable directories.
 VOLUME ["/etc/mysql", "/var/lib/mysql"]
