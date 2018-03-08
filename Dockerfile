@@ -168,5 +168,3 @@ ENTRYPOINT ["docker-entrypoint.sh"]
 #EXPOSE 3306
 EXPOSE 80
 CMD ["mysqld"]
-
-TAG larssielaff/typo3mariadb:latest
