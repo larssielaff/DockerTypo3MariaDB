@@ -54,8 +54,8 @@ RUN \
   rm -rf /var/lib/apt/lists/* 
 RUN \  
   sed -i 's/^\(bind-address\s.*\)/# \1/' /etc/mysql/my.cnf 
-RUN mysqld_safe && mysql -u root -e "CREATE USER 'typo3'@'localhost' IDENTIFIED BY 'typo3';"
-RUN mysqld_safe && mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'typo3'@'localhost' WITH GRANT OPTION;"]
+CMD ["mysqld_safe && mysql -u root -e "CREATE USER 'typo3'@'localhost' IDENTIFIED BY 'typo3';""]
+CMD ["mysqld_safe && mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'typo3'@'localhost' WITH GRANT OPTION;""]
 # Define mountable directories.
 VOLUME ["/etc/mysql", "/var/lib/mysql"]
 
@@ -64,4 +64,4 @@ WORKDIR /data
 
 # Define default command.
 CMD ["mysqld_safe"] 
-RUN update-rc.d apache2 defaults
+CMD ["apache2-foreground"]
