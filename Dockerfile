@@ -135,8 +135,8 @@ RUN echo "deb http://ftp.osuosl.org/pub/mariadb/repo/$MARIADB_MAJOR/debian jessi
 # the "/var/lib/mysql" stuff here is because the mysql-server postinst doesn't have an explicit way to disable the mysql_install_db codepath besides having a database already "configured" (ie, stuff in /var/lib/mysql/mysql)
 # also, we set debconf keys to make APT a little quieter
 RUN { \
-		echo "mariadb-server-$MARIADB_MAJOR" mysql-server/root_password password 'unused'; \
-		echo "mariadb-server-$MARIADB_MAJOR" mysql-server/root_password_again password 'unused'; \
+		echo "mariadb-server-$MARIADB_MAJOR" mysql-server/root_password password 'tomcat'; \
+		echo "mariadb-server-$MARIADB_MAJOR" mysql-server/root_password_again password 'tomcat'; \
 	} | debconf-set-selections \
 	&& apt-get update \
 	&& apt-get install -y \
@@ -165,6 +165,6 @@ COPY docker-entrypoint.sh /usr/local/bin/
 RUN ln -s usr/local/bin/docker-entrypoint.sh / # backwards compat
 ENTRYPOINT ["docker-entrypoint.sh"]
 
-#EXPOSE 3306
+EXPOSE 3306
 EXPOSE 80
 CMD ["mysqld"]
