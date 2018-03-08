@@ -55,8 +55,8 @@ RUN \
 RUN \  
   sed -i 's/^\(bind-address\s.*\)/# \1/' /etc/mysql/my.cnf 
 CMD ["mysqld_safe"] 
-RUN mysql -e 'CREATE USER 'typo3'@'localhost' IDENTIFIED BY 'typo3';' 
-RUN mysql -e 'GRANT ALL PRIVILEGES ON *.* TO 'typo3' WITH GRANT OPTION;' 
+RUN mysql -h 127.0.0.1 -u root -p  -e 'CREATE USER 'typo3'@'localhost' IDENTIFIED BY 'typo3';' 
+RUN mysql -h 127.0.0.1 -u root -p  -e 'GRANT ALL PRIVILEGES ON *.* TO 'typo3' WITH GRANT OPTION;' 
 
 # Define mountable directories.
 VOLUME ["/etc/mysql", "/var/lib/mysql"]
