@@ -1,6 +1,29 @@
 FROM php:7.2-apache
 LABEL maintainer="Lars Sielaff <lars.sielaff@t-online.de>"
 
+RUN \
+apt-get update && \
+  DEBIAN_FRONTEND=noninteractive apt-get install -y mariadb-server-10.1 && \
+  rm -rf /var/lib/apt/lists/* && \
+  sed -i 's/^\(bind-address\s.*\)/# \1/' /etc/mysql/my.cnf && \
+  echo "mysqld_safe &" > /tmp/config && \
+  echo "mysqladmin --silent --wait=30 ping || exit 1" >> /tmp/config && \
+  echo "mysql -e 'GRANT ALL PRIVILEGES ON *.* TO \"root\"@\"%\" WITH GRANT OPTION;'" >> /tmp/config && \
+  bash /tmp/config && \
+  rm -f /tmp/config
+
+# Define mountable directories.
+VOLUME ["/etc/mysql", "/var/lib/mysql"]
+
+# Define working directory.
+WORKDIR /data
+
+# Define default command.
+CMD ["mysqld_safe"]
+
+# Expose ports.
+EXPOSE 3306
+
 # Install TYPO3
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
