@@ -11,8 +11,6 @@ RUN \
   sed -i 's/^\(bind-address\s.*\)/# \1/' /etc/mysql/my.cnf 
 CMD ["mysqld_safe"] 
 RUN \
-mysqladmin ping
-RUN \
   echo "mysql -e 'GRANT ALL PRIVILEGES ON *.* TO \"root\"@\"%\" WITH GRANT OPTION;'" >> /tmp/config && \
   bash /tmp/config 
 
