@@ -8,7 +8,7 @@ RUN \
 RUN \
   rm -rf /var/lib/apt/lists/* 
 RUN \  
-  sed -i 's/^\(bind-address\s.*\)/# \1/' /etc/mysql/my.cnf && \
+  sed -i 's/^\(bind-address\s.*\)/# \1/' /etc/mysql/my.cnf 
 CMD ["mysqld_safe"] 
 RUN \
 echo "mysqladmin --silent --wait=30 ping || exit 1" >> /tmp/config && \
