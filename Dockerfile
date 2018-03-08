@@ -62,7 +62,6 @@ VOLUME ["/etc/mysql", "/var/lib/mysql"]
 # Define working directory.
 WORKDIR /data
 
-ENTRYPOINT ["apache2-foreground"]
-
 # Define default command.
 CMD ["mysqld_safe"] 
+ENTRYPOINT ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
