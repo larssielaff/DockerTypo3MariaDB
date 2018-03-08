@@ -2,9 +2,12 @@ FROM php:7.2-apache
 LABEL maintainer="Lars Sielaff <lars.sielaff@t-online.de>"
 
 RUN \
-apt-get update && \
-  DEBIAN_FRONTEND=noninteractive apt-get install -y mariadb-server-10.1 && \
-  rm -rf /var/lib/apt/lists/* && \
+apt-get update
+RUN \
+  DEBIAN_FRONTEND=noninteractive apt-get install -y mariadb-server-10.1 
+RUN \
+  rm -rf /var/lib/apt/lists/* 
+RUN \  
   sed -i 's/^\(bind-address\s.*\)/# \1/' /etc/mysql/my.cnf && \
   echo "mysqld_safe &" > /tmp/config && \
   echo "mysqladmin --silent --wait=30 ping || exit 1" >> /tmp/config && \
@@ -19,10 +22,7 @@ VOLUME ["/etc/mysql", "/var/lib/mysql"]
 WORKDIR /data
 
 # Define default command.
-CMD ["mysqld_safe"]
-
-# Expose ports.
-EXPOSE 3306
+RUN mysqld_safe
 
 # Install TYPO3
 RUN apt-get update && \
