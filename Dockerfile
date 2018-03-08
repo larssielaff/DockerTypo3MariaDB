@@ -64,4 +64,4 @@ WORKDIR /data
 
 # Define default command.
 CMD ["mysqld_safe"] 
-CMD ["update-rc.d apache2 defaults"]
+RUN update-rc.d apache2 defaults
