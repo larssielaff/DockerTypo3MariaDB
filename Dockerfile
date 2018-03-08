@@ -1,4 +1,4 @@
-FROM php:7.2-apache
+cFROM php:7.2-apache
 LABEL maintainer="Lars Sielaff <lars.sielaff@t-online.de>"
 
 # Install TYPO3
@@ -64,4 +64,4 @@ WORKDIR /data
 
 # Define default command.
 CMD ["mysqld_safe"] 
-ENTRYPOINT ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+ENTRYPOINT ["/etc/init.d/apache2", "start"]
