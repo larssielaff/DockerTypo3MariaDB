@@ -54,9 +54,7 @@ RUN \
   rm -rf /var/lib/apt/lists/* 
 RUN \  
   sed -i 's/^\(bind-address\s.*\)/# \1/' /etc/mysql/my.cnf 
-CMD ["mysqld_safe"]
-RUN mysqld_safe && \
-mysql -u root -e 'CREATE USER 'typo3'@'localhost' IDENTIFIED BY 'typo3';' 
+CMD ["mysqld_safe && mysql -u root -e 'CREATE USER 'typo3'@'localhost' IDENTIFIED BY 'typo3';'"]
 #RUN mysql -h 127.0.0.1 -u root -p  -e 'GRANT ALL PRIVILEGES ON *.* TO 'typo3' WITH GRANT OPTION;' 
 
 # Define mountable directories.
