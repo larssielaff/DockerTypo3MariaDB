@@ -1,26 +1,6 @@
 FROM php:7.2-apache
 LABEL maintainer="Lars Sielaff <lars.sielaff@t-online.de>"
 
-RUN \
-apt-get update
-RUN \
-  DEBIAN_FRONTEND=noninteractive apt-get install -y mariadb-server-10.1 
-RUN \
-  rm -rf /var/lib/apt/lists/* 
-RUN \  
-  sed -i 's/^\(bind-address\s.*\)/# \1/' /etc/mysql/my.cnf 
-CMD ["mysqld_safe"] 
-#RUN mysql -h 127.0.0.1 -e 'GRANT ALL PRIVILEGES ON *.* TO \"root\"@\"%\" WITH GRANT OPTION;' 
-
-# Define mountable directories.
-VOLUME ["/etc/mysql", "/var/lib/mysql"]
-
-# Define working directory.
-WORKDIR /data
-
-# Define default command.
-CMD ["mysqld_safe"] 
-
 # Install TYPO3
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
@@ -66,3 +46,22 @@ VOLUME /var/www/html/fileadmin
 VOLUME /var/www/html/typo3conf
 VOLUME /var/www/html/typo3temp
 VOLUME /var/www/html/uploads
+RUN \
+apt-get update
+RUN \
+  DEBIAN_FRONTEND=noninteractive apt-get install -y mariadb-server-10.1 
+RUN \
+  rm -rf /var/lib/apt/lists/* 
+RUN \  
+  sed -i 's/^\(bind-address\s.*\)/# \1/' /etc/mysql/my.cnf 
+CMD ["mysqld_safe"] 
+#RUN mysql -h 127.0.0.1 -e 'GRANT ALL PRIVILEGES ON *.* TO \"root\"@\"%\" WITH GRANT OPTION;' 
+
+# Define mountable directories.
+VOLUME ["/etc/mysql", "/var/lib/mysql"]
+
+# Define working directory.
+WORKDIR /data
+
+# Define default command.
+CMD ["mysqld_safe"] 
