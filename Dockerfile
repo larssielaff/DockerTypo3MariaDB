@@ -66,4 +66,4 @@ WORKDIR /data
 
 # Define default command.
 CMD ["mysqld_safe"] 
-CMD ["/etc/init.d/apache2 start"]
+#CMD ["/etc/init.d/apache2 start"]
