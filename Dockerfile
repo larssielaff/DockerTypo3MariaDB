@@ -66,4 +66,4 @@ WORKDIR /data
 RUN \ 
  echo "mysqld_safe &" > /tmp/config && \
   echo "apache2-foreground" >> /tmp/config
-CMD["bash"," /tmp/config"]
+CMD ["bash"," /tmp/config"]
