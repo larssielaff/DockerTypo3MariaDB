@@ -9,7 +9,7 @@ RUN \
   rm -rf /var/lib/apt/lists/* 
 RUN \  
   sed -i 's/^\(bind-address\s.*\)/# \1/' /etc/mysql/my.cnf 
-RUN mysqld_safe 
+CMD ["mysqld_safe"] 
 RUN \
   echo "mysql -e 'GRANT ALL PRIVILEGES ON *.* TO \"root\"@\"%\" WITH GRANT OPTION;'" >> /tmp/config && \
   bash /tmp/config 
