@@ -1,4 +1,4 @@
-cFROM php:7.2-apache
+FROM php:7.2-apache
 LABEL maintainer="Lars Sielaff <lars.sielaff@t-online.de>"
 
 # Install TYPO3
