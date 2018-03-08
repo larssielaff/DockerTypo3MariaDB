@@ -63,5 +63,7 @@ VOLUME ["/etc/mysql", "/var/lib/mysql"]
 WORKDIR /data
 
 # Define default command.
-CMD ["mysqld_safe"] 
-ENTRYPOINT ["/etc/init.d/apache2", "start"]
+RUN \ 
+ echo "mysqld_safe &" > /tmp/config && \
+  echo "apache2-foreground" >> /tmp/config
+CMD["bash"," /tmp/config"]
