@@ -1,7 +1,6 @@
 FROM php:7.2-apache
 LABEL maintainer="Lars Sielaff <lars.sielaff@t-online.de>"
 
-TAG larssielaff/typo3mariadb:latest
 # Install TYPO3
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
@@ -169,3 +168,5 @@ ENTRYPOINT ["docker-entrypoint.sh"]
 #EXPOSE 3306
 EXPOSE 80
 CMD ["mysqld"]
+
+TAG larssielaff/typo3mariadb:latest
