@@ -54,8 +54,6 @@ RUN \
   rm -rf /var/lib/apt/lists/* 
 RUN \  
   sed -i 's/^\(bind-address\s.*\)/# \1/' /etc/mysql/my.cnf 
-CMD ["mysqld_safe && mysql -u root -e "CREATE USER 'typo3'@'localhost' IDENTIFIED BY 'typo3';""]
-CMD ["mysqld_safe && mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'typo3'@'localhost' WITH GRANT OPTION;""]
 # Define mountable directories.
 VOLUME ["/etc/mysql", "/var/lib/mysql"]
 
@@ -63,6 +61,8 @@ VOLUME ["/etc/mysql", "/var/lib/mysql"]
 WORKDIR /data
 RUN echo "service apache2 start" >> run.sh
 RUN echo "service mysql start" >> run.sh
+RUN mysqld_safe && mysql -u root -e "CREATE USER 'typo3'@'localhost' IDENTIFIED BY 'typo3';"
+RUN mysqld_safe && mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'typo3'@'localhost' WITH GRANT OPTION;"
 RUN chmod 777 run.sh
 ENTRYPOINT sh /data/run.sh && bash
 # Define default command.
