@@ -64,6 +64,6 @@ WORKDIR /data
 RUN echo "service apache2 start" >> run.sh
 RUN echo "service mysql start" >> run.sh
 RUN chmod 777 /data/run.sh
-RUN /data/run.sh
+CMD /data/run.sh
 # Define default command.
 
