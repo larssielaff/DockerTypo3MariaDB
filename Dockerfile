@@ -61,9 +61,7 @@ VOLUME ["/etc/mysql", "/var/lib/mysql"]
 WORKDIR /data
 RUN echo "service apache2 start" >> run.sh
 RUN echo "service mysql start" >> run.sh
-RUN mysqld_safe && mysql -u root -e "CREATE USER 'typo3'@'localhost' IDENTIFIED BY 'typo3';"
-RUN mysqld_safe && mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'typo3'@'localhost' WITH GRANT OPTION;"
 RUN chmod 777 run.sh
-ENTRYPOINT sh /data/run.sh && bash
+ENTRYPOINT sh /data/run.sh && bash && mysql -u root -e "CREATE USER 'typo3'@'localhost' IDENTIFIED BY 'typo3';" && mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'typo3'@'localhost' WITH GRANT OPTION;"
 # Define default command.
 
