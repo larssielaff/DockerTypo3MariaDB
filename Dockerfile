@@ -61,6 +61,6 @@ VOLUME ["/etc/mysql", "/var/lib/mysql"]
 
 # Define working directory.
 WORKDIR /data
-ENTRYPOINT service apache2 start && service mysql start && top
+ENTRYPOINT service apache2 start && service mysqld start && top
 # Define default command.
 
