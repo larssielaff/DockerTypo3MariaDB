@@ -61,7 +61,7 @@ VOLUME ["/etc/mysql", "/var/lib/mysql"]
 
 # Define working directory.
 WORKDIR /data
-CMD /usr/bin/apache2 
-CMD /usr/bin/mysqld_safe start
+CMD service apache2 start
+CMD /usr/bin/mysqld_safe
 # Define default command.
 
