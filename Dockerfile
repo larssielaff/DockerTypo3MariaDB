@@ -62,6 +62,7 @@ WORKDIR /data
 RUN echo "service apache2 start" >> run.sh
 RUN echo "service mysql start" >> run.sh
 RUN chmod 777 run.sh
-ENTRYPOINT sh /data/run.sh && bash && mysql -u root -e "CREATE USER 'typo3'@'localhost' IDENTIFIED BY 'typo3';" && mysql -u root -e "GRANT ALL PRIVILEGES ON *.* TO 'typo3'@'localhost' WITH GRANT OPTION;"
+COPY sql.sh /data
+ENTRYPOINT sh /data/run.sh && sh /data/sql.sh && bash
 # Define default command.
 
