@@ -61,9 +61,7 @@ VOLUME ["/etc/mysql", "/var/lib/mysql"]
 
 # Define working directory.
 WORKDIR /data
-RUN echo "service apache2 start" >> run.sh
-RUN echo "service mysql start" >> run.sh
-RUN chmod 777 /data/run.sh
-ENTRYPOINT sh /data/run.sh
+CMD /usr/bin/apache2 
+CMD /usr/bin/mysqld_safe start
 # Define default command.
 
