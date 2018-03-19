@@ -65,6 +65,6 @@ RUN echo "/usr/sbin/apache2ctl -D FOREGROUNDbash" >> run.sh
 RUN chmod 777 run.sh
 COPY sql.sh /data/
 RUN chmod 777 sql.sh
-ENTRYPOINT sh /data/run.sh && bash 
+ENTRYPOINT sh /data/run.sh && sh /data/sql.sh && bash 
 # Define default command.
 
