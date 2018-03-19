@@ -59,9 +59,9 @@ VOLUME ["/etc/mysql", "/var/lib/mysql"]
 
 # Define working directory.
 WORKDIR /data
-RUN echo "service apache2 start" >> run.sh
+# RUN echo "service apache2 start" >> run.sh
 RUN echo "service mysql start" >> run.sh
-RUN echo "bash" >> run.sh
+RUN echo "/usr/sbin/apache2ctl -D FOREGROUNDbash" >> run.sh
 RUN chmod 777 run.sh
 COPY sql.sh /data/
 RUN chmod 777 sql.sh
