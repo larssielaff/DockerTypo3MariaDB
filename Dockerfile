@@ -62,7 +62,7 @@ WORKDIR /data
 RUN echo "service apache2 start" >> run.sh
 RUN echo "service mysql start" >> run.sh
 RUN chmod 777 run.sh
-COPY sql.sh /data
+COPY sql.sh /data/
 RUN chmod 777 sql.sh
 ENTRYPOINT sh /data/run.sh && sh /data/sql.sh && bash
 # Define default command.
